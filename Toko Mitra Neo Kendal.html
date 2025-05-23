@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toko Keramik Elegan</title>
+    <style>
+        :root {
+            --color-primary: #e67e22; /* oranye */
+            --color-secondary: #2c3e50; /* biru abu-abu tua */
+            --color-bg: #f9f9f9;
+            --color-text: #34495e;
+            --color-white: #fff;
+            --color-border: #ddd;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        header {
+            background-color: var(--color-white);
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-secondary);
+            margin-left: 25px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f3f3f3 0%, #ffffff 100%);
+            border-radius: 10px;
+            padding: 40px 30px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: var(--color-secondary);
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+        }
+
+        /* Search & Filter Section */
+        .filter-section {
+            background-color: var(--color-white);
+            padding: 20px 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-section label {
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .filter-group input[type="text"],
+        .filter-group select,
+        .filter-group input[type="number"] {
+            padding: 8px 12px;
+            border: 1.5px solid var(--color-border);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group input[type="text"]:focus,
+        .filter-group select:focus,
+        .filter-group input[type="number"]:focus {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+
+        .filter-section button {
+            background-color: var(--color-primary);
+            border: none;
+            padding: 12px 25px;
+            color: var(--color-white);
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            height: 44px;
+            align-self: flex-end;
+            transition: background-color 0.3s;
+        }
+
+        .filter-section button:hover {
+            background-color: #cf6f17;
+        }
+
+        /* Products Section */
+        .products h2 {
+            color: var(--color-secondary);
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 2rem;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            object-fit: cover;
+            height: 160px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin: 0 0 8px;
+            color: var(--color-secondary);
+        }
+
+        .product-card .price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+
+        .product-card button {
+            background-color: var(--color-primary);
+            border: none;
+            padding: 10px;
+            color: var(--color-white);
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #cf6f17;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            margin-top: 60px;
+        }
+
+        .gallery h2 {
+            color: var(--color-secondary);
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 2rem;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            height: 140px;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 18px rgb(0 0 0 / 0.15);
+        }
+
+        footer {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            text-align: center;
+            padding: 20px 15px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-group {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">KeramikKu</a>
+        <nav>
+            <a href="#">Beranda</a>
+            <a href="#">Produk</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Kontak</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Keramik Elegan untuk Hunian Anda</h1>
+                <p>
+                    Temukan berbagai pilihan keramik berkualitas dengan desain modern dan harga terbaik.  
+                    Cocok untuk lantai, dinding, dan dekorasi rumah Anda.
+                </p>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1578894385601-69bbf72f2930?auto=format&fit=crop&w=600&q=80" alt="Keramik Elegan" />
+            </div>
+        </section>
+
+        <!-- Filter/Pencarian -->
+        <section class="filter-section">
+            <div class="filter-group">
+                <label for="search-name">Cari Nama Produk</label>
+                <input type="text" id="search-name" placeholder="Misal: Polos, Marble..." />
+            </div>
+            <div class="filter-group">
+                <label for="category">Kategori</label>
+                <select id="category">
+                    <option value="">Semua Kategori</option>
+                    <option value="polos">Keramik Polos</option>
+                    <option value="motif-kayu">Motif Kayu</option>
+                    <option value="marble">Marble</option>
+                    <option value="mozaik">Mozaik</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="price-min">Harga Min (Rp)</label>
+                <input type="number" id="price-min" min="0" placeholder="0" />
+            </div>
+            <div class="filter-group">
+                <label for="price-max">Harga Max (Rp)</label>
+                <input type="number" id="price-max" min="0" placeholder="9999999" />
+            </div>
+            <button id="filter-btn">Filter</button>
+        </section>
+
+        <section class="products">
+            <h2>Produk Unggulan</h2>
+            <div class="product-list" id="product-list">
+                <div class="product-card" data-name="Keramik Polos Putih" data-category="polos" data-price="120000">
+                    <img src="https://images.unsplash.com/photo-1547045662-26340f357d37?auto=format&fit=crop&w=400&q=80" alt="Keramik Polos Putih" />
+                    <h3>Keramik Polos Putih</h3>
+                    <div class="price">Rp120.000 / m²</div>
+                    <button>Beli Sekarang</button>
+                </div>
+                <div class="product-card" data-name="Keramik Motif Kayu" data-category="motif-kayu" data-price="150000">
+                    <img src="https://images.unsplash.com/photo-1618212922510-32c27e2fce32?auto=format&fit=crop&w=400&q=80" alt="Keramik Motif Kayu" />
+                    <h3>Keramik Motif Kayu</h3>
+                    <div class="price">Rp150.000 / m²</div>
+                    <button>Beli Sekarang</button>
+                </div>
+                <div class="product-card" data-name="Keramik Marble" data-category="marble" data-price="220000">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b4?auto=format&fit=crop&w=400&q=80" alt="Keramik Marble" />
+                    <h3>Keramik Marble</h3>
+                    <div class="price">Rp220.000 / m²</div>
+                    <button>Beli Sekarang</button>
+                </div>
+                <div class="product-card" data-name="Keramik Mozaik" data-category="mozaik" data-price="180000">
+                    <img src="https://images.unsplash.com/photo-1616627892321-f9849bcdb95a?auto=format&fit=crop&w=400&q=80" alt="Keramik Mozaik" />
+                    <h3>Keramik Mozaik</h3>
+                    <div class="price">Rp180.000 / m²</div>
+                    <button>Beli Sekarang</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>Galeri Barang</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1603386322129-9c7ed1c29e44?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 1" />
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1d9b91f?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 2" />
+                <img src="https://images.unsplash.com/photo-1588032781475-7f24419e6f44?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 3" />
+                <img src="https://images.unsplash.com/photo-1579394516333-c317ec533d65?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 4" />
+                <img src="https://images.unsplash.com/photo-1601891932670-8333b4bb1b1b?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 5" />
+                <img src="https://images.unsplash.com/photo-1556228722-7d516339a60e?auto=format&fit=crop&w=400&q=80" alt="Keramik Sample 6" />
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 KeramikKu. Semua hak cipta dilindungi.
+    </footer>
+
+    <script>
+        const filterBtn = document.getElementById('filter-btn');
+        const productList = document.getElementById('product-list');
+
+        filterBtn.addEventListener('click', () => {
+            const searchName = document.getElementById('search-name').value.toLowerCase();
+            const category = document.getElementById('category').value;
+            const priceMin = parseInt(document.getElementById('price-min').value) || 0;
+            const priceMax = parseInt(document.getElementById('price-max').value) || Infinity;
+
+            const products = productList.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const name = product.dataset.name.toLowerCase();
+                const prodCategory = product.dataset.category;
+                const price = parseInt(product.dataset.price);
+
+                const matchesName = name.includes(searchName);
+                const matchesCategory = category === "" || prodCategory === category;
+                const matchesPrice = price >= priceMin && price <= priceMax;
+
+                if (matchesName && matchesCategory && matchesPrice) {
+                    product.style.display = '';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
